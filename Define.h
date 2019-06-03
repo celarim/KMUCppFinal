@@ -1,7 +1,7 @@
 #ifndef __DEFINE_H__
 #define __DEFINE_H__
 
-#define EMPTY 0
+#define EMPTY 5
 #define WALL 1
 #define BOX 2
 #define GOAL 3

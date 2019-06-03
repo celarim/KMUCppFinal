@@ -12,14 +12,11 @@ public:
     int data;
 
 public:
-    Character()
+    Character(int xx, int yy) : x(xx), y(yy), data(CHARACTER)
     {
-        x = 3;
-        y = 2;
-        data = CHARACTER;
     }
 
-    void Move(char key, int** map, int mapx, int mapy)
+    void Move(char key, int** map, int mapx, int mapy, int* step, int* push)
     {
         int mx = x, my = y;
         int dx = 0, dy = 0;
@@ -41,6 +38,8 @@ public:
             x--;
             dx = -1;
             break;
+        default:
+            return;
         }
 
         if(map[y][x] == BOX)
@@ -49,6 +48,8 @@ public:
             {
                 map[y][x] = EMPTY;
                 map[y + dy][x + dx] = BOX;
+                (*step)++;
+                (*push)++;
             }
             else
             {
@@ -61,8 +62,11 @@ public:
             y = my;
             x = mx;
         }
-
-
+        else
+        {
+            (*step)++;
+        }
+        
         if (y < 0)
             y = 0;
         if (y > mapy - 1)
