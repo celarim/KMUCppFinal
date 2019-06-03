@@ -1,6 +1,6 @@
-move : wasd
-**TODO**
-restart : F1
-backward : F2
-
+move : wasd<br/>
+**TODO**<br/>
+restart : F1<br/>
+backward : F2<br/>
+<br/>
 ![SS](./SS.png)
