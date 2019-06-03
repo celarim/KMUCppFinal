@@ -1,6 +1,10 @@
-#include <iostream>
+#ifndef __GAME_H__
+#define __GAME_H__
+
 #include <fstream>
 #include <ncurses.h>
+#include <termios.h>
+#include "Character.h"
 
 using namespace std;
 
@@ -11,6 +15,8 @@ public:
     int row;
     int **data;
     bool isGamePlaying;
+
+    Character cter;
 
 public:
     Game()
@@ -37,6 +43,7 @@ public:
 
     void Input()
     {
+        cter.Move(getch(), data, row, col);
     }
 
     void Update()
@@ -55,6 +62,11 @@ public:
             }
             printw("\n");
         }
+
+        attron(COLOR_PAIR(cter.data));
+        mvprintw(cter.y, cter.x, "%d", cter.data);
+        attroff(COLOR_PAIR(cter.data));
+        mvprintw(col, row, "");
     }
 
     ~Game()
@@ -66,3 +78,5 @@ public:
         delete[] data;
     }
 };
+
+#endif
